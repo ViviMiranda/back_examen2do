@@ -8,27 +8,25 @@ import { Participante } from './Models/Participante.js';
 export class Server {
   constructor() {
     this.app = express();
-    this.port = 3000;
+    this.port = process.env.PORT || 3000; 
     this.connection();
     this.middlewares();
     this.routes();
   }
 
   middlewares() {
-  this.app.use(cors({
-    origin: "*",
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: false
-  }));
-  
-  this.app.use(express.json());
-}
+    this.app.use(cors({
+      origin: ['http://front-examen2do.vercel.app', 'http://localhost:5173'], 
+      credentials: true
+    }));
+    this.app.use(express.json());
+  }
 
   async connection() {
     try {
       await databaseConnection.authenticate();
       await Participante.sync();
-      console.log('Conectado ');
+      console.log('Conectado a la base de datos');
     } catch (e) {
       console.log('Error de conexión ', e);
     }
@@ -40,7 +38,7 @@ export class Server {
 
   startServer() {
     this.app.listen(this.port, () => {
-      console.log(` Servidor corriendo en el puerto:${this.port}`);
+      console.log(`Servidor corriendo en el puerto: ${this.port}`); 
     });
   }
 }
