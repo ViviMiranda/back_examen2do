@@ -1,0 +1,21 @@
+{
+  "name": "examen2do_back",
+  "version": "1.0.0",
+  "description": "Back examen 2do parcial",
+  "main": "App.js",
+  "type": "module",
+  "scripts": {
+    "start": "node App.js",
+    "dev": "nodemon App.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.18.2",
+    "pg": "^8.11.3",
+    "sequelize": "^6.32.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
